@@ -94,7 +94,7 @@ public class Generator extends Solver implements Serializable
 *ze sudoku bedzie mialo wiecej niz jedno rozwiazanie
 *@param difficulty ilosc liczb ktora powinna zostac w tablicy
 */
-	void kebabRemover(int difficulty)  
+	void removePointsToGivenNumber(int difficulty)  
 	{
 		
 		board = new int[9][9];

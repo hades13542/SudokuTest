@@ -22,9 +22,7 @@ abstract class Wyswietlane
 */
    public void wyczysc()
    {
-//	   System.out.print("Test");
-	   
-      for(int i=0; i<50; i++);
+      for(int i=0; i<50; i++)
          System.out.println();
    }
 /**

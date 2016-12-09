@@ -31,25 +31,15 @@ public class Interfejs extends Wyswietlane
    liniaP = 5,
    rozmiarPY = 12,
    rozmiarPX = 24;
-   public void setLiniaP(int liniaP) {
-	this.liniaP = liniaP;
-}
-private String miniInstrukcja = new String("Format wprowadzania danych: [wiersz]x[kolumna]:[cyfra], np. 2x4:6"); //miejsce na jakas instrukcje albo cos innego
+   private String miniInstrukcja = new String("Format wprowadzania danych: [wiersz]x[kolumna]:[cyfra], np. 2x4:6"); //miejsce na jakas instrukcje albo cos innego
    private String[] menuBoczne = new String[] {"(Z)apisz grę", "(P)okaż rozwiązanie", "P(o)dpowiedź", "(M)enu główne"};
    private Scanner in = new Scanner(System.in);
 
-   public void setMenuBoczne(String[] menuBoczne) {
-	   this.menuBoczne=menuBoczne;
-   }
-   
-   public void setObecnaGra(Gra gra) {
-	   this.obecnaGra=gra;
-   }
 /**
    *Metoda wyświetlająca planszę
    *@param numery linini w któeych ma być wyświetlona plansza
 */
-   public void wyswietlPlansze(int linia, int[][] sudo, int [][]sudo2)//raczej nie będzie trzeba tego ruszać chyba że będziecie chcieli zmienić trochę ustawienie
+   void wyswietlPlansze(int linia, int[][] sudo, int [][]sudo2)//raczej nie będzie trzeba tego ruszać chyba że będziecie chcieli zmienić trochę ustawienie
    {
       for(int j=0; j<62; j++)
          System.out.print('\b');

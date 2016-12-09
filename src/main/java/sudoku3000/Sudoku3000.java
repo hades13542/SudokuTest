@@ -103,7 +103,7 @@ public class Sudoku3000
 	   	 			newGame.swapRows();
 	   	 			newGame.swapColumns();
 	   	 			newGame.setPodpowiedzi(3);
-	   	 			newGame.kebabRemover(70);
+	   	 			newGame.removePointsToGivenNumber(70);
 					newGame.prepare();
 					komunikat = new String("Poziom Latwy");
 					newGame.setPoziom(new String(komunikat));
@@ -114,7 +114,7 @@ public class Sudoku3000
 	   	 			newGame.swapRows();
 	   	 			newGame.swapColumns();
 	   	 			newGame.setPodpowiedzi(2);
-	   				newGame.kebabRemover(50);
+	   				newGame.removePointsToGivenNumber(50);
 					newGame.prepare();
 					komunikat = new String("Poziom Sredni");
 					newGame.setPoziom(new String(komunikat));
@@ -125,7 +125,7 @@ public class Sudoku3000
 	   	 			newGame.swapRows();
 	   	 			newGame.swapColumns();
 	   	 			newGame.setPodpowiedzi(1);
-	   	 			newGame.kebabRemover(20);
+	   	 			newGame.removePointsToGivenNumber(20);
 					newGame.prepare();
 					komunikat = new String("Poziom Trudny");
 					newGame.setPoziom(new String(komunikat));

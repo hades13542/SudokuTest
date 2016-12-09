@@ -13,13 +13,13 @@ public class WyswietlaneTest {
 
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-	private Wyswietlane wyswietlaneMock;
+	private Wyswietlane wyswietlaneTest;
 	
 	@BeforeMethod
 	public void setup(){
 	    System.setOut(new PrintStream(outContent));
 	    System.setErr(new PrintStream(errContent));
-	    wyswietlaneMock = Mockito.mock(Wyswietlane.class, Mockito.CALLS_REAL_METHODS);
+	    wyswietlaneTest = Mockito.mock(Wyswietlane.class, Mockito.CALLS_REAL_METHODS);
 	}
 	
 	@AfterMethod
@@ -29,8 +29,8 @@ public class WyswietlaneTest {
 	}
 	
 	@Test
-	public void wyczyscTest() {
-		wyswietlaneMock.wyczysc();
+	public void testWyczysc() {
+		wyswietlaneTest.wyczysc();
 		//Tricky: there should be 50 times /n in outContent so I use String.trim() to compare it with empty string.
 		Assert.assertEquals("", outContent.toString().trim());
 		

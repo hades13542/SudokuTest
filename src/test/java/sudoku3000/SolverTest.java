@@ -2,7 +2,6 @@ package sudoku3000;
 
 import java.util.Arrays;
 
-import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,11 +9,11 @@ import org.testng.annotations.Test;
 
 public class SolverTest {
 
-	private Solver solverMock;
+	private Solver solverTest;
 
 	@BeforeMethod
 	public void setup() {
-		solverMock = Mockito.mock(Solver.class, Mockito.CALLS_REAL_METHODS);
+		solverTest = new Solver();
 	}
 
 	private int[][] getNotSolvedTestSudoku() {
@@ -41,54 +40,106 @@ public class SolverTest {
 		return solution;
 	}
 
+	/**
+     * Test of canBePlaced method, of class Solver.
+     */
+    //zwraca true tylko jesli wstawiamy cyfre w puste pole i jesli jest ono poprawne
+    @Test
+    public void testCanBePlaced() {
+        System.out.println("canBePlaced");
+        int[][] sudo = new int[9][9];
+        //
+        //int tab[] = {5,1,3,9,7,6,8,2,4,2,4,9,5,8,1,7,3,6,6,8,7,2,3,4,9,1,5,3,2,1,8,4,5,6,7,9,8,6,4,7,9,2,1,5,3,9,7,5,6,1,3,2,4,8,7,5,6,4,2,8,3,9,1,1,9,8,3,5,7,4,6,2,4,3,2,1,6,9,5,8,7};
+        int tab[] = {0,1,3,9,7,6,8,2,4,2,4,9,5,8,1,7,3,6,6,8,7,2,3,4,9,1,5,3,2,1,8,4,5,6,7,9,8,6,4,7,9,2,1,5,3,9,7,5,6,1,3,2,4,8,7,5,6,4,2,8,3,9,1,1,9,8,3,5,7,4,6,2,4,3,2,1,6,9,5,8,7};
+        Solver instance = new Solver();
+         
+         
+        //uzupelnienie sudoku
+        int x,y;
+        for(int i = 0; i < 81; i++)
+        {
+            if((i % 9)>0)
+            {
+                x = i/9;
+                y = i%9;
+ 
+            }else
+            {
+                x = i/9;
+                y = 0;
+            }
+             
+            sudo[x][y] = tab[i];
+ 
+        }
+         
+        //wypisanie sudoku na ekran
+        for(int i = 0; i<9; i++) 
+        {
+                for(int j = 0; j<9; j++) 
+                {
+                        System.out.print(sudo[i][j] + " ");
+                }   
+                System.out.println();
+        }
+         
+        int row = 0;
+        int column = 0;
+        int num = 5;
+        boolean expResult = true;
+        boolean result = instance.canBePlaced(sudo, row, column, num);
+        Assert.assertEquals(expResult, result);
+ 
+    }
+	
 	@Test
-	public void solveTest() {
+	public void testSolve() {
 		int[][] sudoTest = getNotSolvedTestSudoku();
 		int[][] solutionTest = new int[9][9];
-		solverMock.solution = solutionTest;
+		solverTest.solution = solutionTest;
 		int index = 0;
-		solverMock.solve(sudoTest, index);
-		Assert.assertEquals(Arrays.deepToString(solverMock.solution), Arrays.deepToString(getSolutionTestSudoku()));
+		solverTest.solve(sudoTest, index);
+		Assert.assertEquals(Arrays.deepToString(solverTest.solution), Arrays.deepToString(getSolutionTestSudoku()));
 	}
 
 	@Test
-	public void solveWithIndex81Test() {
+	public void testSolveWithIndex81() {
 		int[][] sudoTest = getNotSolvedTestSudoku();
 		int[][] solutionTest = new int[9][9];
-		solverMock.solution = solutionTest;
+		solverTest.solution = solutionTest;
 		int index = 81;
-		solverMock.solve(sudoTest, index);
-		Assert.assertEquals(Arrays.deepToString(solverMock.solution), Arrays.deepToString(sudoTest));
+		solverTest.solve(sudoTest, index);
+		Assert.assertEquals(Arrays.deepToString(solverTest.solution), Arrays.deepToString(sudoTest));
 	}
 
 	@Test
-	public void counterWithOneSolutionTest() {
+	public void testCounterWithOneSolution() {
 		int[][] sudoTest = getNotSolvedTestSudoku();
 		int[][] solutionTest = new int[9][9];
-		solverMock.solution = solutionTest;
+		solverTest.solution = solutionTest;
 		int index = 0;
-		solverMock.counter(sudoTest, index);
-		Assert.assertEquals(solverMock.numberOfSolutions, 1);
+		solverTest.counter(sudoTest, index);
+		Assert.assertEquals(solverTest.numberOfSolutions, 1);
 	}
 
 	@Test
-	public void counterWithMoreSolutionsTest() {
+	public void testCounterWithMoreSolutions() {
 		int[][] sudoTest = getSudokuWithMultipleSolutions();
 		int[][] solutionTest = new int[9][9];
-		solverMock.solution = solutionTest;
+		solverTest.solution = solutionTest;
 		int index = 0;
-		solverMock.counter(sudoTest, index);
-		Assert.assertEquals(solverMock.numberOfSolutions, 2);
+		solverTest.counter(sudoTest, index);
+		Assert.assertEquals(solverTest.numberOfSolutions, 2);
 	}
 	
 	@Test
-	public void counterWith81IndexTest() {
+	public void testCounterWith81Index() {
 		int[][] sudoTest = getSudokuWithMultipleSolutions();
 		int[][] solutionTest = new int[9][9];
-		solverMock.solution = solutionTest;
+		solverTest.solution = solutionTest;
 		int index = 81;
-		solverMock.counter(sudoTest, index);
-		Assert.assertEquals(solverMock.numberOfSolutions, 1);
+		solverTest.counter(sudoTest, index);
+		Assert.assertEquals(solverTest.numberOfSolutions, 1);
 	}
 
 	@AfterMethod

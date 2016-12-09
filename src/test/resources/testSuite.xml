@@ -4,13 +4,12 @@
 	<test name="TestAll">
 		<classes>
 			<class name="sudoku3000.GeneratorTest" />
-			<!-- <class name="sudoku3000.GraTest" /> -->
- 			<!-- <class name="sudoku3000.InterfaceTest" /> -->
-			<!-- <class name="sudoku3000.MenuTest" /> -->
-			<!-- <class name="sudoku3000.MapTest" /> -->
-		<!-- 	<class name="sudoku3000.SolverTest" /> -->
-			<!-- <class name="sudoku3000.Sudoku3000Test" />
-			<class name="sudoku3000.WyswietlaneTest" /> -->
+			<class name="sudoku3000.GraTest" />
+ 			<class name="sudoku3000.InterfaceTest" />
+			<class name="sudoku3000.MenuTest" />
+			<class name="sudoku3000.MapTest" />
+			<class name="sudoku3000.SolverTest" />
+			<class name="sudoku3000.WyswietlaneTest" />
 		</classes>
 	</test>
 </suite>
