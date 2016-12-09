@@ -5,33 +5,30 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import org.mockito.Mockito;
 import org.mockito.internal.util.reflection.Whitebox;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-@PrepareForTest(MenuTest.class)
 public class MenuTest {
 
-	private Menu menuMock;
+	private Menu menuTest;
 
 	@BeforeMethod
 	public void setup() {
-		menuMock = Mockito.mock(Menu.class, Mockito.CALLS_REAL_METHODS);
+		menuTest = new Menu();
 	}
 
 	 @Test
-	public void wczytajTest() {
-		 String myFilePath = "E:\\Eclipse_workspace\\SudokuTest\\src\\test\\resources\\";
+	public void testWczytaj() {
+		 String myFilePath = "src\\test\\resources\\";
 		 InputStream in = new ByteArrayInputStream(myFilePath.getBytes());
 		 System.setIn(in);
 		 String wczytajResult = "";
 		try {
-			wczytajResult = menuMock.wczytaj();
+			wczytajResult = menuTest.wczytaj();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -41,7 +38,7 @@ public class MenuTest {
 	}
 
 	@Test
-	public void wyswietlKomTest() {
+	public void testWyswietlKom() {
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
@@ -56,16 +53,16 @@ public class MenuTest {
 				"\\____/ \\__,_|\\__,_|\\___/|_|\\_\\\\__,_| \\____/ \\___/ \\___/ \\___/ "
 				    
 				};
-		String miniInstrukcjaMock = "testMiniInstrukcja";
-		Whitebox.setInternalState(menuMock, "rozmiarY", rozmiarYMock);
-		Whitebox.setInternalState(menuMock, "rozmiarX", rozmiarXMock);
-		Whitebox.setInternalState(menuMock, "logo2", logoMock);
-		Whitebox.setInternalState(menuMock, "miniInstrukcja", miniInstrukcjaMock);
+		String miniInstrukcjaTest = "testMiniInstrukcja";
+		Whitebox.setInternalState(menuTest, "rozmiarY", rozmiarYMock);
+		Whitebox.setInternalState(menuTest, "rozmiarX", rozmiarXMock);
+		Whitebox.setInternalState(menuTest, "logo2", logoMock);
+		Whitebox.setInternalState(menuTest, "miniInstrukcja", miniInstrukcjaTest);
 		String komunikatTest = "TEST";
 		
-		menuMock.wyswietlKom(komunikatTest);
+		menuTest.wyswietlKom(komunikatTest);
 		
-		Assert.assertTrue(outContent.toString().trim().contains(miniInstrukcjaMock));
+		Assert.assertTrue(outContent.toString().trim().contains(miniInstrukcjaTest));
 		Assert.assertTrue(outContent.toString().trim().contains(komunikatTest));
 		Assert.assertTrue(outContent.toString().trim().contains("Sudoku ver 1.0"));
 		
@@ -75,20 +72,20 @@ public class MenuTest {
 	
 	 @DataProvider(name = "nazwaTest")
 	 public static Object[][] opcjeTestProvider() {
-	 String[] opcjeMenuMock = { "1)Nowa gra", "2)Wczytaj grę", "3)Wyjście" };
-	 String[] opcjeNowaGraMock = { "1)poziom łatwy", "2)poziom średni",
+	 String[] opcjeMenuTest = { "1)Nowa gra", "2)Wczytaj grę", "3)Wyjście" };
+	 String[] opcjeNowaGraTest = { "1)poziom łatwy", "2)poziom średni",
 	 "3)poziom trudny", "4)gra własna" };
-	 return new Object[][] { { 0, opcjeMenuMock }, { 1, opcjeMenuMock }, { 2,
-	 opcjeMenuMock },
-	 { 0, opcjeNowaGraMock }, { 1, opcjeNowaGraMock }, { 2, opcjeNowaGraMock
-	 }, { 3, opcjeNowaGraMock } };
+	 return new Object[][] { { 0, opcjeMenuTest }, { 1, opcjeMenuTest }, { 2,
+	 opcjeMenuTest },
+	 { 0, opcjeNowaGraTest }, { 1, opcjeNowaGraTest }, { 2, opcjeNowaGraTest
+	 }, { 3, opcjeNowaGraTest } };
 	
 	 }
 	
 	 @Test(dataProvider = "nazwaTest")
-	 public void nazwaTest(int iValue, String[] opcjeMock) {
-	 Whitebox.setInternalState(menuMock, "opcje", opcjeMock);
-	 String result = menuMock.nazwa(iValue);
+	 public void testNazwa(int iValue, String[] opcjeMock) {
+	 Whitebox.setInternalState(menuTest, "opcje", opcjeMock);
+	 String result = menuTest.nazwa(iValue);
 	 Assert.assertEquals(result, opcjeMock[iValue].substring(2));
 	 }
 
