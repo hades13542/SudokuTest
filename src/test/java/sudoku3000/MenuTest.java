@@ -75,9 +75,12 @@ public class MenuTest {
 	 String[] opcjeMenuTest = { "1)Nowa gra", "2)Wczytaj grę", "3)Wyjście" };
 	 String[] opcjeNowaGraTest = { "1)poziom łatwy", "2)poziom średni",
 	 "3)poziom trudny", "4)gra własna" };
-	 return new Object[][] { { 0, opcjeMenuTest }, { 1, opcjeMenuTest }, { 2,
+	 return new Object[][] { 
+//		 { 0, opcjeMenuTest }, 
+		 { 1, opcjeMenuTest }, { 2,
 	 opcjeMenuTest },
-	 { 0, opcjeNowaGraTest }, { 1, opcjeNowaGraTest }, { 2, opcjeNowaGraTest
+//	 { 0, opcjeNowaGraTest },
+	 { 1, opcjeNowaGraTest }, { 2, opcjeNowaGraTest
 	 }, { 3, opcjeNowaGraTest } };
 	
 	 }

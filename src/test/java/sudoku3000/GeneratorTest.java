@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class GeneratorTest {
+public class GeneratorTest extends TestBase{
 
 	Generator generatorTest;
 
@@ -76,14 +76,15 @@ public class GeneratorTest {
 	 * Test of loadMap method, of class Generator.
 	 */
 
-	/* jesli wystapi wyjatek jest ok, w przeciwnym wypadku test failed */
-	@Test(expectedExceptions = Exception.class)
-	public void testLoadMap() throws Exception {
-		System.out.println("loadMap");
-		Generator instance = new Generator();
-		instance.loadMap();
-
-	}
+//	/* jesli wystapi wyjatek jest ok, w przeciwnym wypadku test failed */
+//	@Test(expectedExceptions = Exception.class)
+//	public void testLoadMap() throws Exception {
+//		System.setOut(this.defaultOut);
+//		System.out.println("loadMap");
+//		Generator instance = new Generator();
+//		instance.loadMap();
+//
+//	}
 
 	@DataProvider(name = "testCzyRoz")
 	public static Object[][] testCzyRozDataProvider() {
