@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class MenuTest {
+public class MenuTest extends TestBase{
 
 	private Menu menuTest;
 
@@ -23,6 +23,7 @@ public class MenuTest {
 
 	 @Test
 	public void testWczytaj() {
+		 System.out.println("wczytaj");
 		 String myFilePath = "src\\test\\resources\\";
 		 InputStream in = new ByteArrayInputStream(myFilePath.getBytes());
 		 System.setIn(in);
@@ -39,6 +40,7 @@ public class MenuTest {
 
 	@Test
 	public void testWyswietlKom() {
+		System.out.println("wyswietlKom");
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
@@ -65,9 +67,12 @@ public class MenuTest {
 		Assert.assertTrue(outContent.toString().trim().contains(miniInstrukcjaTest));
 		Assert.assertTrue(outContent.toString().trim().contains(komunikatTest));
 		Assert.assertTrue(outContent.toString().trim().contains("Sudoku ver 1.0"));
-		
-		System.setOut(null);
-		System.setErr(null);
+		//Te linijki powodują błąd 
+//		System.setOut(null);
+//		System.setErr(null);
+		//Poprawne rozwiązanie
+		System.setOut(defaultOut);
+		System.setErr(defaultErr);
 	}
 	
 	 @DataProvider(name = "nazwaTest")
@@ -87,6 +92,7 @@ public class MenuTest {
 	
 	 @Test(dataProvider = "nazwaTest")
 	 public void testNazwa(int iValue, String[] opcjeMock) {
+		 System.out.println("nazwa");
 	 Whitebox.setInternalState(menuTest, "opcje", opcjeMock);
 	 String result = menuTest.nazwa(iValue);
 	 Assert.assertEquals(result, opcjeMock[iValue].substring(2));

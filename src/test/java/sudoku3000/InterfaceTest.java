@@ -28,6 +28,7 @@ public class InterfaceTest extends TestBase {
 
 	@Test
 	public void wyswietlPlanszeTest() {
+		System.out.println("wyswietlPlansze");
 		System.setOut(new PrintStream(outContent));
 		System.setErr(new PrintStream(errContent));
 		final int TEST_VALUE = 9;

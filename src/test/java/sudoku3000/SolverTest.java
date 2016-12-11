@@ -44,7 +44,7 @@ public class SolverTest {
      * Test of canBePlaced method, of class Solver.
      */
     //zwraca true tylko jesli wstawiamy cyfre w puste pole i jesli jest ono poprawne
-//    @Test
+    @Test
     public void testCanBePlaced() {
         System.out.println("canBePlaced");
         int[][] sudo = new int[9][9];
@@ -94,6 +94,7 @@ public class SolverTest {
 	
 	@Test
 	public void testSolve() {
+		System.out.println("solve");
 		int[][] sudoTest = getNotSolvedTestSudoku();
 		int[][] solutionTest = new int[9][9];
 		solverTest.solution = solutionTest;
@@ -104,6 +105,7 @@ public class SolverTest {
 
 	@Test
 	public void testSolveWithIndex81() {
+		System.out.println("solve");
 		int[][] sudoTest = getNotSolvedTestSudoku();
 		int[][] solutionTest = new int[9][9];
 		solverTest.solution = solutionTest;
@@ -114,6 +116,7 @@ public class SolverTest {
 
 	@Test
 	public void testCounterWithOneSolution() {
+		System.out.println("counter");
 		int[][] sudoTest = getNotSolvedTestSudoku();
 		int[][] solutionTest = new int[9][9];
 		solverTest.solution = solutionTest;
@@ -124,6 +127,7 @@ public class SolverTest {
 
 	@Test
 	public void testCounterWithMoreSolutions() {
+		System.out.println("counter");
 		int[][] sudoTest = getSudokuWithMultipleSolutions();
 		int[][] solutionTest = new int[9][9];
 		solverTest.solution = solutionTest;
@@ -134,6 +138,7 @@ public class SolverTest {
 	
 	@Test
 	public void testCounterWith81Index() {
+		System.out.println("counter");
 		int[][] sudoTest = getSudokuWithMultipleSolutions();
 		int[][] solutionTest = new int[9][9];
 		solverTest.solution = solutionTest;

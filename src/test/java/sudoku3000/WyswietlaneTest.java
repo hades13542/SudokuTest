@@ -3,7 +3,6 @@ package sudoku3000;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,9 +16,14 @@ public class WyswietlaneTest {
 	
 	@BeforeMethod
 	public void setup(){
-	    System.setOut(new PrintStream(outContent));
-	    System.setErr(new PrintStream(errContent));
-	    wyswietlaneTest = Mockito.mock(Wyswietlane.class, Mockito.CALLS_REAL_METHODS);
+	    wyswietlaneTest = new Wyswietlane() {
+			
+			@Override
+			void wyswietlKom(String komunikat) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
 	}
 	
 	@AfterMethod
@@ -30,9 +34,12 @@ public class WyswietlaneTest {
 	
 	@Test
 	public void testWyczysc() {
+		System.out.println("wyczysc");
+	    System.setOut(new PrintStream(outContent));
+	    System.setErr(new PrintStream(errContent));
 		wyswietlaneTest.wyczysc();
 		//Tricky: there should be 50 times /n in outContent so I use String.trim() to compare it with empty string.
-		Assert.assertEquals("", outContent.toString().trim());
+		Assert.assertEquals(outContent.toString().trim(), "");
 		
 	}
 }

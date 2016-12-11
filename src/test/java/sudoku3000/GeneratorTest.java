@@ -52,19 +52,7 @@ public class GeneratorTest extends TestBase{
 	@Test(dataProvider = "testLoadCon")
 	public void testLoadCon(String sudo, boolean expectedResult) {
 		System.out.println("loadCon");
-
-		// 81 cyfr + rozne znaki, ok
-		// String sudo =
-		// ":?7543,8169292874601561359284!04319287568@#95107234267453980546879++++++123302615479170234568";
-		// 81 cyfr
-		// String sudo =
-		// "754381692928746015613592840431928756895107234267453980546879123302615479170234568";
-		// 80 cyfr
-		// String sudo =
-		// "75438169292874601561359284043192875689510723426745398054687912330261547917023456";
-		// 82 cyfry
-		// String sudo =
-		// "7543816929287460156135928404319287568951072342674539805468791233026154791702345689";
+		
 		Generator instance = new Generator();
 		boolean result = instance.loadCon(sudo);
 		instance.printBoard();
@@ -75,7 +63,7 @@ public class GeneratorTest extends TestBase{
 	/**
 	 * Test of loadMap method, of class Generator.
 	 */
-
+//
 //	/* jesli wystapi wyjatek jest ok, w przeciwnym wypadku test failed */
 //	@Test(expectedExceptions = Exception.class)
 //	public void testLoadMap() throws Exception {
@@ -102,15 +90,6 @@ public class GeneratorTest extends TestBase{
 		System.out.println("czyRoz");
 		Generator instance = new Generator();
 
-		// int tab[] = { 5, 1, 3, 9, 7, 6, 8, 2, 4, 2, 4, 9, 5, 8, 1, 7, 3, 6,
-		// 6, 8, 7, 2, 3, 4, 9, 1, 5, 3, 2, 1, 8, 4, 5,
-		// 6, 7, 9, 8, 6, 4, 7, 9, 2, 1, 5, 3, 9, 7, 5, 6, 1, 3, 2, 4, 8, 7, 5,
-		// 6, 4, 2, 8, 3, 9, 1, 1, 9, 8, 3, 5,
-		// 7, 4, 6, 2, 4, 3, 2, 1, 6, 9, 5, 8, 7 };
-		// sudoku nie wypelnione w calosci, pierwsza wartosc 0
-		// int tab[] =
-		// {0,1,3,9,7,6,8,2,4,2,4,9,5,8,1,7,3,6,6,8,7,2,3,4,9,1,5,3,2,1,8,4,5,6,7,9,8,6,4,7,9,2,1,5,3,9,7,5,6,1,3,2,4,8,7,5,6,4,2,8,3,9,1,1,9,8,3,5,7,4,6,2,4,3,2,1,6,9,5,8,7};
-
 		int x, y;
 		for (int i = 0; i < 81; i++) {
 			if ((i % 9) > 0) {
@@ -129,16 +108,18 @@ public class GeneratorTest extends TestBase{
 		boolean result = instance.czyRoz();
 		Assert.assertEquals(expectedResult, result);
 	}
-//
-//	@Test
-//	public void testSwapRows() {
-//		Whitebox.setInternalState(generatorTest, "solution", getSolutionTestSudoku());
-//		generatorTest.swapRows();
-//		Assert.assertFalse(Arrays.deepEquals(getSolutionTestSudoku(), generatorTest.solution));
-//	}
+
+	@Test
+	public void testSwapRows() {
+		System.out.println("swapRows");
+		Whitebox.setInternalState(generatorTest, "solution", getSolutionTestSudoku());
+		generatorTest.swapRows();
+		Assert.assertFalse(Arrays.deepEquals(getSolutionTestSudoku(), generatorTest.solution));
+	}
 
 	@Test
 	public void testRemovePointsToGivenNumber() {
+		System.out.println("removePointsToGivenNumber");
 		int difficulty = 65;
 		Generator mock = Mockito.mock(Generator.class);
 		Whitebox.setInternalState(mock, "solution", getSolutionTestSudoku());
@@ -146,7 +127,6 @@ public class GeneratorTest extends TestBase{
 
 		Mockito.doCallRealMethod().when(mock).removePointsToGivenNumber(Matchers.anyInt());
 		Mockito.when(mock.countSolutions(mock.board)).thenReturn(0);
-		mock.board = getSolutionTestSudoku();
 		mock.removePointsToGivenNumber(difficulty);
 		System.out.println(Arrays.deepToString(mock.board));
 		Assert.assertEquals(difficulty, 81 - countRemovedPoints(mock.board));
@@ -166,6 +146,7 @@ public class GeneratorTest extends TestBase{
 
 	@Test
 	public void testSwapColumns() {
+		System.out.println("swapColumns");
 		Whitebox.setInternalState(generatorTest, "solution", getSolutionTestSudoku());
 		generatorTest.swapColumns();
 		Assert.assertFalse(Arrays.deepEquals(getSolutionTestSudoku(), generatorTest.solution));
@@ -173,12 +154,14 @@ public class GeneratorTest extends TestBase{
 
 	@Test
 	public void testPrepare() {
+		System.out.println("prepare");
 		generatorTest.prepare();
 		Assert.assertTrue(Arrays.deepEquals(generatorTest.board, generatorTest.oryginal));
 	}
 
 	@Test
 	public void testPrintSolution() {
+		System.out.println("printSolution");
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 		PrintStream stdout = System.out;

@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.io.PrintStream;
 import java.security.Key;
@@ -27,6 +28,7 @@ public class GraTest extends TestBase {
 	
 	@Test
 	public void testZapiszWithSerializable() throws Exception {
+		System.out.println("ZapiszWithSerializable");
 		final String ALGO = "AES";
 		final String filePath = "src\\test\\resources\\save.txt";
 		//Prepare our mock save into file.
@@ -51,20 +53,21 @@ public class GraTest extends TestBase {
 	}
 	
 //	@Test(expectedExceptions=FileNotFoundException.class)
-	public void testZapiszFailed() throws Exception {
-		final String filePath = "src\\test\\resources\\";
-		final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-		final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-		//Prepare our mock save into file.
-	    System.setOut(new PrintStream(outContent));
-	    System.setErr(new PrintStream(errContent));
-
-		graTest.zapisz(filePath);
-		//failed because of encoding language specific characters
-		Assert.assertEquals("Zapis w klasie Gra: src\\test\\resources\\ \n"
-				+ "Błąd wejścia-wyjścia", outContent.toString().trim());
-	}
-	
+//	public void testZapiszFailed() throws Exception {
+//		System.out.println("zapiszFailed");
+//		final String filePath = "src\\test\\resources\\";
+//		final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+//		final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+//		//Prepare our mock save into file.
+//	    System.setOut(new PrintStream(outContent));
+//	    System.setErr(new PrintStream(errContent));
+//
+//		graTest.zapisz(filePath);
+//		//failed because of encoding language specific characters
+//		Assert.assertEquals("Zapis w klasie Gra: src\\test\\resources\\ \n"
+//				+ "Błąd wejścia-wyjścia", outContent.toString().trim());
+//	}
+//	
 	/**
 	 * Method to compare objects {@link Gra.class}. Only few fields are compared.
 	 * @param graTest 
@@ -105,8 +108,7 @@ public class GraTest extends TestBase {
     @Test
     public void testZapisz() throws Exception {
         System.out.println("zapisz");
-        //String nazwa = "C:\\Users\\Agata Wójcik\\AppData\\Roaming\\Sudoku3000\\Przyklad.txt";
-        //String nazwa = "C:\\Users\\Agata Wójcik\\Desktop\\Przyklad.txt";
+        
         String nazwa = "Przyklad.txt";
         Gra gra = new Gra();
         boolean expResult = true;
@@ -121,10 +123,7 @@ public class GraTest extends TestBase {
     @Test
     public void testWczytaj() throws Exception {
         System.out.println("wczytaj");
-        //plik istnieje, test przechodzi
-        //String nazwa = "C:\\Users\\Agata Wójcik\\AppData\\Roaming\\Sudoku3000\\Przyklad.txt";
-        //plik nie istnieje, test nie przechodzi
-        //String nazwa = "C:\\Users\\Agata Wójcik\\AppData\\Roaming\\Sudoku3000\\Test.txt";
+        
         String nazwa = "Przyklad.txt";
         Gra result = Gra.wczytaj(nazwa);
         Assert.assertNotNull(result);
@@ -297,7 +296,6 @@ public class GraTest extends TestBase {
         System.out.println("\n"+result);
         System.out.println("\n"+result2);
         System.out.println("\n"+result3);
-        //assertEquals(expResult, result3); //ilosc podpowiedzi ustawiona na 2, 3 jest "brak..."
         Assert.assertNotEquals(expResult, result2); //spodziewamy sie, ze udalo sie pobrac druga podpowiedz
     }
     
